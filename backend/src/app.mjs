@@ -6,6 +6,8 @@ import helmet from "helmet";
 import morgan from "morgan";
 
 import indexRoutes from "./routes/indexRoutes.mjs";
+import notFound from "./middleware/notFound.mjs";
+import errorMiddleware from "./middleware/errorMiddleware.mjs";
 
 const app = express();
 
@@ -35,5 +37,8 @@ app.use(
 
 // Routes
 app.use("/api", indexRoutes);
+
+app.use(notFound);
+app.use(errorMiddleware);
 
 export default app;
